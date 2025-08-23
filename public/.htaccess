@@ -1,17 +1,24 @@
-# Set correct MIME types for JavaScript modules
-<FilesMatch "\.js$">
-    Header set Content-Type "application/javascript"
-</FilesMatch>
+# Fix MIME types for Vite development server
+<IfModule mod_mime.c>
+    AddType text/html .html
+    AddType text/javascript .js
+    AddType text/javascript .ts
+    AddType text/javascript .tsx
+    AddType text/css .css
+</IfModule>
 
-# Set correct MIME types for CSS
-<FilesMatch "\.css$">
-    Header set Content-Type "text/css"
-</FilesMatch>
-
-# Set correct MIME types for HTML
-<FilesMatch "\.html$">
-    Header set Content-Type "text/html"
-</FilesMatch>
+# Force correct content types
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html)$">
+        Header set Content-Type "text/html; charset=utf-8"
+    </FilesMatch>
+    <FilesMatch "\.(js|ts|tsx)$">
+        Header set Content-Type "text/javascript; charset=utf-8"
+    </FilesMatch>
+    <FilesMatch "\.(css)$">
+        Header set Content-Type "text/css; charset=utf-8"
+    </FilesMatch>
+</IfModule>
 
 # Enable CORS for development
 Header always set Access-Control-Allow-Origin "*"
