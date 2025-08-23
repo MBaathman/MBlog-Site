@@ -1,12 +1,23 @@
 # Redirect all routes to index.html for SPA
 /*    /index.html   200
 
-# Specific dashboard routes
+# Ensure all routes work
 /dashboard    /index.html   200
 /dashboard/*    /index.html   200
-
-# API routes (if any)
-/api/*    /index.html   200
+/about    /index.html   200
+/contact    /index.html   200
+/all-articles    /index.html   200
+/all-concepts    /index.html   200
+/tutorials    /index.html   200
+/resources    /index.html   200
+/favorites    /index.html   200
+/infographics    /index.html   200
+/infographics/*    /index.html   200
+/concept/*    /index.html   200
+/tutorial/*    /index.html   200
+/resource/*    /index.html   200
+/favorite/*    /index.html   200
+/login    /index.html   200
 
 # Static assets
 /assets/*    /assets/*   200

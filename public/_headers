@@ -1,13 +1,56 @@
+# Set correct MIME types for all files
 /*
-  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
 
-/*.js
-  Content-Type: application/javascript
+# HTML files
+*.html
+  Content-Type: text/html; charset=utf-8
 
-/*.css
-  Content-Type: text/css
+# JavaScript files
+*.js
+  Content-Type: text/javascript; charset=utf-8
 
-/*.html
-  Content-Type: text/html 
+# TypeScript files
+*.ts
+  Content-Type: text/javascript; charset=utf-8
+
+*.tsx
+  Content-Type: text/javascript; charset=utf-8
+
+# CSS files
+*.css
+  Content-Type: text/css; charset=utf-8
+
+# Images
+*.png
+  Content-Type: image/png
+
+*.jpg
+  Content-Type: image/jpeg
+
+*.jpeg
+  Content-Type: image/jpeg
+
+*.gif
+  Content-Type: image/gif
+
+*.svg
+  Content-Type: image/svg+xml
+
+*.webp
+  Content-Type: image/webp
+
+# Fonts
+*.woff
+  Content-Type: font/woff
+
+*.woff2
+  Content-Type: font/woff2
+
+*.ttf
+  Content-Type: font/ttf
+
+*.eot
+  Content-Type: application/vnd.ms-fontobject 
