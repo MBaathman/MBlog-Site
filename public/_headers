@@ -1,56 +1,5 @@
-# Set correct MIME types for all files
+# Set basic headers
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
-
-# HTML files
-*.html
-  Content-Type: text/html; charset=utf-8
-
-# JavaScript files
-*.js
-  Content-Type: text/javascript; charset=utf-8
-
-# TypeScript files
-*.ts
-  Content-Type: text/javascript; charset=utf-8
-
-*.tsx
-  Content-Type: text/javascript; charset=utf-8
-
-# CSS files
-*.css
-  Content-Type: text/css; charset=utf-8
-
-# Images
-*.png
-  Content-Type: image/png
-
-*.jpg
-  Content-Type: image/jpeg
-
-*.jpeg
-  Content-Type: image/jpeg
-
-*.gif
-  Content-Type: image/gif
-
-*.svg
-  Content-Type: image/svg+xml
-
-*.webp
-  Content-Type: image/webp
-
-# Fonts
-*.woff
-  Content-Type: font/woff
-
-*.woff2
-  Content-Type: font/woff2
-
-*.ttf
-  Content-Type: font/ttf
-
-*.eot
-  Content-Type: application/vnd.ms-fontobject 
+  X-XSS-Protection: 1; mode=block 

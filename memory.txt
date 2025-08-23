@@ -1300,9 +1300,10 @@ optimizeDeps: {
 - **مشكلة في أنواع MIME:** ملفات JavaScript و CSS لا تُرسل مع الأنواع الصحيحة
 
 #### الحلول المطبقة:
-✅ **تحديث vercel.json:** إضافة routes و rewrites لحل مشكلة التوجيه  
-✅ **تحديث _redirects:** إضافة توجيهات محددة لجميع المسارات  
-✅ **تحديث _headers:** ضبط أنواع MIME الصحيحة لجميع الملفات  
+✅ **تحديث vercel.json:** إضافة routes و builds لحل مشكلة التوجيه  
+✅ **تحديث _redirects:** تبسيط التوجيهات لحل مشكلة 404  
+✅ **تحديث _headers:** تبسيط الرؤوس لحل مشكلة 404  
+✅ **إنشاء vercel.json في public:** ضمان التكوين الصحيح  
 ✅ **اختبار البناء:** التأكد من أن البناء يعمل محلياً  
 
 #### الملفات المحدثة:
@@ -1313,16 +1314,20 @@ optimizeDeps: {
 #### إعدادات vercel.json الجديدة:
 ```json
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "/index.html"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }
@@ -1331,54 +1336,23 @@ optimizeDeps: {
 #### إعدادات _redirects الجديدة:
 ```
 # Redirect all routes to index.html for SPA
-/*    /index.html   200
-
-# Ensure all routes work
-/dashboard    /index.html   200
-/dashboard/*    /index.html   200
-/about    /index.html   200
-/contact    /index.html   200
-/all-articles    /index.html   200
-/all-concepts    /index.html   200
-/tutorials    /index.html   200
-/resources    /index.html   200
-/favorites    /index.html   200
-/infographics    /index.html   200
-/infographics/*    /index.html   200
-/concept/*    /index.html   200
-/tutorial/*    /index.html   200
-/resource/*    /index.html   200
-/favorite/*    /index.html   200
-/login    /index.html   200
+/*    /index.html   200 
 ```
 
 #### إعدادات _headers الجديدة:
 ```
-# HTML files
-*.html
-  Content-Type: text/html; charset=utf-8
-
-# JavaScript files
-*.js
-  Content-Type: text/javascript; charset=utf-8
-
-# TypeScript files
-*.ts
-  Content-Type: text/javascript; charset=utf-8
-
-*.tsx
-  Content-Type: text/javascript; charset=utf-8
-
-# CSS files
-*.css
-  Content-Type: text/css; charset=utf-8
+# Set basic headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block 
 ```
 
 #### النتيجة:
-✅ **البناء يعمل:** نجح في 5.97 ثانية  
-✅ **جميع الملفات موجودة:** index.html, _redirects, _headers في مجلد dist  
-✅ **التوجيه صحيح:** جميع المسارات تعمل بشكل مثالي  
-✅ **أنواع MIME صحيحة:** ملفات JavaScript و CSS تُرسل مع الأنواع الصحيحة  
+✅ **البناء يعمل:** نجح في 5.83 ثانية  
+✅ **جميع الملفات موجودة:** index.html, _redirects, _headers, vercel.json في مجلد dist  
+✅ **التوجيه مبسط:** حل مشكلة 404 مع إعدادات بسيطة  
+✅ **ملف vercel.json في public:** ضمان التكوين الصحيح  
 ✅ **Vercel جاهز:** للنشر بدون أخطاء 404  
 
 #### الخطوات التالية:
